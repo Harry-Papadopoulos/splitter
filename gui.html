@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="bundle.js" defer></script>
+  <title>IOU</title>
+
+  <head>
+
+  <body>
+    <header>
+      <h1>Who? What? Who?</h1>
+      <h3>To acompany your amazing experiences!</h3>
+    </header>
+
+    <div class="inputs">
+      <section>
+        <h4>Add a new participant</h4>
+        <form id="name-form">
+          <input type="text" class="input-area" id="new-name" placeholder="Name">
+          <input type="button" class="btn" id="name-button" value="Add">
+        </form>
+
+      </section>
+
+      <section>
+        <h4>Add a new expense</h4>
+        <form id="expense-form">
+          <input type="text" class="input-area" id="payer-name" placeholder="Who Paid?">
+          <input type="text" class="input-area" id="expense-name" placeholder="Expense Name"> <br>
+          <input type="number" class="input-area" id="expense-amount" step="0.01" placeholder="Amount">
+          <input type="button" class="btn" id="expense-button" value="Add">
+        </form>
+      </section>
+
+      <section>
+        <h4>Remove a participant</h4>
+        <form id="delete-form">
+          <input type="text" class="input-area" id="delete-name" placeholder="Imput Name">
+          <input type="button" class="btn" id="delete-button" value="Remove">
+        </form>
+      </section>
+
+      <section>
+        <h4>Remove an expense</h4>
+        <form id="delete-expense-form">
+          <input type="text" class="input-area" id="expense-delete-participant" placeholder="Imput Participant Name">
+          <input type="text" class="input-area" id="expense-delete" placeholder="Imput Expense Name">
+          <input type="button" class="btn" id="delete-expense-button" value="Remove">
+        </form>
+      </section>
+
+    </div>
+
+    <div class="outputs">  
+      
+
+      <section id="individual-outputs">
+        <!--
+        THE PARTICIPANTS AND THEIR INFO WILL GO HERE!!!!!!!!!!
+          -->
+        </select>
+
+
+      </section>
+      <!--
+        THE COMBINED INFORMATION WILL GO HERE!!!!!!!!!!
+          -->
+      <section id="total-outputs">
+        <p id="total-expediture"></p>
+
+      </section>
+
+    </div>
+
+    <footer>
+      <p>Remember to give each expense a unique name!</p>
+
+    </footer>
+
+  </body>
+
+
+</html>
+
+
+
+
