@@ -1658,71 +1658,47 @@ THE INTERACTION WITH THE DOM STARTS HERE!! /////////////////////////////////////
 */
 
 
-// Events to add a participant.
+// Button to add a participant.
 var nameButton = document.getElementById("name-button");
 nameButton.onclick = inputParticipant;
 
-var nameForm = document.getElementById("name-form");
-nameForm.addEventListener("keydown", keyEnterName);
 
-function keyEnterName(key) {
-  if (key.keyCode == "13") {
-    key.preventDefault();
-    nameButton.click();
-    return false;
-  }
-}
-
-// Events to add an expense.
+// Button to add an expense.
 var expenseButton = document.getElementById("expense-button");
 expenseButton.onclick = inputExpense;
 
-var expenseForm = document.getElementById("expense-form");
-expenseForm.addEventListener("keydown", keyEnterExpense);
 
-function keyEnterExpense(key) {
-  if (key.keyCode == "13") {
-    key.preventDefault();
-    expenseButton.click();
-    return false;
-  }
-}
-
-// Events to delete a participant.
+// Button to delete a participant.
 var deleteButton = document.getElementById("delete-button");
 deleteButton.onclick = deleteParticipant;
 
-var deleteForm = document.getElementById("delete-form");
-deleteForm.addEventListener("keydown", keyDeleteParticipant);
 
-function keyDeleteParticipant(key) {
-  if (key.keyCode == "13") {
-    key.preventDefault();
-    deleteButton.click();
-    return false;
-  }
-}
-
-// Events to delete an expense.
+// Button to delete an expense.
 var deleteExpenseButton = document.getElementById("delete-expense-button");
 deleteExpenseButton.onclick = deleteExpense;
 
-var deleteExpenseForm = document.getElementById("delete-expense-form");
-deleteExpenseForm.addEventListener("keydown", keyDeleteExpense);
 
-function keyDeleteExpense(key) {
-  if (key.keyCode == "13") {
-    key.preventDefault();
-    deleteExpenseButton.click();
-    return false;
+//Setting up the enter key for the forms
+
+var forms = ["name-form", "expense-form",  "delete-form", "delete-expense-form"];
+var buttons = ["name-button", "expense-button",  "delete-button", "delete-expense-button"]
+
+function setKeySubmision(forms, buttons) {
+  for (let i = 0; i < 4; i++) {
+    let form = document.getElementById(forms[i]);
+    let button = document.getElementById(buttons[i]);
+    form.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        e.preventDefault();
+        button.click();
+        return false;
+      }
+    })
   }
 }
 
-// Initialize the total expediture.
-var totalExpediture = "Total Expediture: €0.00"
-var expeditureNode = document.getElementById("total-expediture");
-expeditureNode.innerHTML = totalExpediture;
-
+setKeySubmision(forms, buttons);
+totalExpeditureInGui(participants);
 
 
 // Add a participant to the application
@@ -1814,7 +1790,6 @@ function participantInfoGui(participant, participantToggle) {
 }
 
 
-
 // Display the participant's name in an option element of the select element.
 function participantNameInGui(participant, participantToggle) {
   let nameTag = document.createElement("option");
@@ -1870,7 +1845,12 @@ function participantOwedInGui(participant, participantToggle) {
 
 //Update the total expediture in the gui.
 function totalExpeditureInGui(participants) {
-  let totalExpediture = "Total Expediture: " + totalAmount(participants).toFormat();
+  let totalExpediture;
+  if (!participants) {
+    totalExpediture = "Total Expediture: €0.00"
+  } else {
+    totalExpediture = "Total Expediture: " + totalAmount(participants).toFormat();
+  }
   let expeditureNode = document.getElementById("total-expediture");
   expeditureNode.innerHTML = totalExpediture;
 }
@@ -1894,8 +1874,13 @@ function deleteParticipant() {
     alert("Please enter a valid participant name.");
   }
   inserted.value = "";
-  computeDebts(participants);
-  globalUpdateGui(participants);
+  debugger;
+  if (!participants) {
+    totalExpeditureInGui(participants);
+  } else {
+    computeDebts(participants);
+    globalUpdateGui(participants);
+  }
 }
 
 
@@ -1938,7 +1923,64 @@ function deleteExpense() {
 
 
 
+/*
+var nameForm = document.getElementById("name-form");
+nameForm.addEventListener("keydown", keyEnterName);
 
+function keyEnterName(key) {
+  if (key.keyCode == "13") {
+    key.preventDefault();
+    nameButton.click();
+    return false;
+  }
+}
+*/
+
+/*
+var deleteForm = document.getElementById("delete-form");
+deleteForm.addEventListener("keydown", keyDeleteParticipant);
+
+function keyDeleteParticipant(key) {
+  if (key.keyCode == "13") {
+    key.preventDefault();
+    deleteButton.click();
+    return false;
+  }
+}
+*/
+
+/*
+var deleteExpenseForm = document.getElementById("delete-expense-form");
+deleteExpenseForm.addEventListener("keydown", keyDeleteExpense);
+
+function keyDeleteExpense(key) {
+  if (key.keyCode == "13") {
+    key.preventDefault();
+    deleteExpenseButton.click();
+    return false;
+  }
+}
+*/
+
+/*
+var expenseForm = document.getElementById("expense-form");
+expenseForm.addEventListener("keydown", keyEnterExpense);
+
+function keyEnterExpense(key) {
+  if (key.keyCode == "13") {
+    key.preventDefault();
+    expenseButton.click();
+    return false;
+  }
+}
+*/
+
+/*
+// Initialize the total expediture.
+var totalExpediture = "Total Expediture: €0.00"
+var expeditureNode = document.getElementById("total-expediture");
+expeditureNode.innerHTML = totalExpediture;
+*/
 },{"console":5,"dinero.js":12}],12:[function(require,module,exports){
 'use strict';
 
